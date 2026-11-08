@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SDK ES 模块验证</title>
+    <link rel="stylesheet" href="./dist-sdk/customer-service-sdk.css" />
+  </head>
+  <body>
+    <p id="status" role="status">等待挂载</p>
+    <div id="mount-point"></div>
+    <script type="module">
+      try {
+        const { mount } = await import('./dist-sdk/customer-service-sdk.es.js')
+        mount('#mount-point', { title: 'SDK ES 模块验证' })
+        document.getElementById('status').textContent = 'ES 模块挂载成功'
+      } catch (error) {
+        document.getElementById('status').textContent = `错误：${error.message}`
+      }
+    </script>
+  </body>
+</html>

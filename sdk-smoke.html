@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SDK 嵌入验证</title>
+    <link rel="stylesheet" href="./dist-sdk/customer-service-sdk.css" />
+  </head>
+  <body>
+    <h1>SDK 嵌入验证</h1>
+    <p id="status" role="status">等待挂载</p>
+    <button id="add" type="button">投递外部消息</button>
+    <button id="remove" type="button">卸载组件</button>
+    <div id="mount-point"></div>
+    <script src="./dist-sdk/customer-service-sdk.iife.js"></script>
+    <script>
+      try {
+        const widget = CustomerServiceSDK.mount('#mount-point', { title: 'SDK 嵌入验证' })
+        document.getElementById('status').textContent = '挂载成功'
+        document.getElementById('add').addEventListener('click', () => {
+          widget.addMessage({ id: 'smoke-reply-1', role: 'assistant', content: 'SDK 同步推送消息一' })
+          widget.addMessage({ id: 'smoke-reply-2', role: 'assistant', content: 'SDK 同步推送消息二' })
+          document.getElementById('status').textContent = '已连续调用两次 addMessage'
+        })
+        document.getElementById('remove').addEventListener('click', () => {
+          widget.unmount()
+          document.getElementById('status').textContent = '已卸载组件'
+        })
+      } catch (error) {
+        document.getElementById('status').textContent = `错误：${error.message}`
+      }
+    </script>
+  </body>
+</html>
