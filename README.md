@@ -1,4 +1,4 @@
-# 小优服务助手
+# 超级小U 助手
 
 基于 Vue 3、Element Plus 和 Element Plus X 的可嵌入客服组件。界面按需求文档中的浮动聊天窗、历史会话、附件输入区和导入弹窗制作；输入区参考文档提供的 [TDesign ChatSender 样式](https://tdesign.tencent.com/vue-next-chat/components/chat-sender)，实际使用 Element Plus X 的 `XSender`。
 
