@@ -122,7 +122,7 @@ watch(() => props.incoming, (batch) => {
       ? conversations.value.find((item) => item.id === incoming.conversationId)
       : activeConversation.value
     if (!conversation) {
-      console.warn(`小优服务助手：未找到会话 ${incoming.conversationId}，消息未投递。`)
+      console.warn(`超级人工智能小U：未找到会话 ${incoming.conversationId}，消息未投递。`)
       continue
     }
     conversation.messages.push({ ...incoming.message, status: incoming.message.status || 'sent' })
@@ -523,17 +523,17 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="kefu-root">
-    <button v-if="!panelOpen" class="kefu-launcher" aria-label="打开小优服务助手" @click="panelOpen = true">
+    <button v-if="!panelOpen" class="kefu-launcher" aria-label="打开超级人工智能小U" @click="panelOpen = true">
       <span class="robot-face robot-face--launcher"><span class="robot-eyes"><i /><i /></span></span>
-      <span>咨询小优</span>
+      <span>咨询小U</span>
     </button>
 
-    <section v-else class="kefu-panel" :class="{ 'kefu-panel--expanded': expanded }" :style="{ '--panel-width': `${panelWidth}px` }" aria-label="小优服务助手" @dragover.prevent @drop.prevent="dropIntoChat">
+    <section v-else class="kefu-panel" :class="{ 'kefu-panel--expanded': expanded }" :style="{ '--panel-width': `${panelWidth}px` }" aria-label="超级人工智能小U" @dragover.prevent @drop.prevent="dropIntoChat">
       <div class="resize-handle" role="separator" aria-label="拖动调整聊天窗口宽度" aria-orientation="vertical" @pointerdown="startResize" />
       <header class="panel-header">
         <span class="robot-face"><span class="robot-eyes"><i /><i /></span></span>
         <div class="panel-heading">
-          <strong>{{ options.title || '小优服务助手' }}</strong>
+          <strong>{{ options.title || '超级人工智能小U' }}</strong>
           <span>{{ options.subtitle || '优解云端 · 随时为您解答' }}</span>
         </div>
         <div class="header-actions">
@@ -587,7 +587,7 @@ onBeforeUnmount(() => {
       <main ref="scrollRef" class="messages" aria-label="聊天消息">
         <div v-if="isEmpty" class="welcome-state">
           <span class="robot-face robot-face--welcome"><span class="robot-eyes"><i /><i /></span></span>
-          <strong>{{ mode === 'ai' ? '你好，我是小优' : '人工客服正在全力赶来' }}</strong>
+          <strong>{{ mode === 'ai' ? '你好，我是超级人工智能小U' : '人工客服正在全力赶来' }}</strong>
           <p>{{ options.welcomeText || (mode === 'ai' ? '有问题或资料需要一起查看，直接告诉我。' : '请留下您的问题和文件，我们会尽快回复。') }}</p>
           <div class="welcome-suggestions" v-if="mode === 'ai'">
             <button @click="createConversation('ai'); notify('请在输入框描述您的问题')">开始新对话 <el-icon><ArrowRight /></el-icon></button>
@@ -596,7 +596,7 @@ onBeforeUnmount(() => {
         <div v-for="message in currentMessages" :key="message.id" class="message-row" :class="message.role">
           <span v-if="message.role === 'assistant'" class="robot-face robot-face--message"><span class="robot-eyes"><i /><i /></span></span>
           <div class="message-stack">
-            <div class="message-meta"><span>{{ message.role === 'assistant' ? (mode === 'ai' ? '小优助手' : '人工客服') : '我' }}</span><time>{{ formatTime(message.createdAt) }}</time></div>
+            <div class="message-meta"><span>{{ message.role === 'assistant' ? (mode === 'ai' ? '超级人工智能小U' : '人工客服') : '我' }}</span><time>{{ formatTime(message.createdAt) }}</time></div>
             <div class="message-bubble" :class="{ 'is-pending': message.status === 'sending', 'is-error': message.status === 'error' }">
               <span v-if="message.content" class="message-content"><template v-for="(segment, index) in splitMessage(message.content)" :key="index"><a v-if="segment.url" :href="segment.url" target="_blank" rel="noopener noreferrer">{{ segment.text }}</a><template v-else>{{ segment.text }}</template></template></span>
               <span v-if="message.status === 'sending' && message.role === 'assistant'" class="typing-indicator"><i /><i /><i /> {{ message.content ? '正在生成…' : '正在整理答复…' }}</span>
