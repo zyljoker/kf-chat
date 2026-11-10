@@ -5,7 +5,7 @@ import type { WidgetOptions } from './types'
 const demoReply = '【模拟回复】设置边界条件前，请先确认适用对象、取值范围和单位，再核对保存后的预览。实际字段和结果请以接入的业务系统为准。'
 
 const widgetOptions: WidgetOptions = {
-  title: '小优服务助手',
+  title: '超级人工智能小U',
   subtitle: '优解云端 · 交互演示',
   cloudFiles: [
     { id: 'demo-folder', name: '演示资料', isFolder: true },
@@ -68,7 +68,7 @@ const widgetOptions: WidgetOptions = {
         <a class="sidebar-link" href="#experience"><span class="nav-dot" />体验说明</a>
         <div class="sidebar-note">
           <strong>组件演示</strong>
-          <p>右下角的小优服务助手支持 AI 与人工会话模式、文件选择和历史会话操作。</p>
+          <p>右下角的超级人工智能小U支持 AI 与人工会话模式、文件选择和历史会话操作。</p>
         </div>
       </aside>
 
